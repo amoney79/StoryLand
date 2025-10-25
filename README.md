@@ -1,47 +1,76 @@
- 📚 StoryLand — JavaFX Novel Reading App
 
-> A complete JavaFX clone of the NovelUp reading platform with modern UI, real-time features, user profiles, notifications, admin tools, and full database integration.
+<div align="center">
 
+<img src="/assets/storyland_banner.png" width="100%" alt="StoryLand Banner"/>
 
- Overview
+# 📚 **StoryLand — Where Stories Meet Technology**
 
-**NovelUp** is a modern **novel reading application** built entirely in **JavaFX** (frontend) and **MySQL** (backend).
-It allows users to explore, read, manage, and track novels with an immersive reading experience — complete with:
+### A Complete JavaFX Novel Reading Ecosystem by **StoryLand Studios**
 
-* Dynamic content loading
-* Library and history management
-* Profile customization
-* Real-time notifications
-* Admin panel for managing novels and users
+[![JavaFX](https://img.shields.io/badge/JavaFX-21%2B-blue?logo=java&logoColor=white)](#)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)](#)
+[![MySQL](https://img.shields.io/badge/Database-MySQL-orange?logo=mysql&logoColor=white)](#)
+[![Maven](https://img.shields.io/badge/Build-Maven-red?logo=apachemaven&logoColor=white)](#)
+[![Twitter Follow](https://img.shields.io/twitter/follow/Ma_ck_enzie_J?style=social)](https://x.com/Ma_ck_enzie_J)
 
-This project replicates the NovelUp ecosystem from **user registration → reading → history tracking → profile management** — fully functional and database-connected.
+---
 
- Tech Stack
+</div>
 
-| Layer               | Technology                   |
-| ------------------- | ---------------------------- |
-| **Frontend (UI)**   | JavaFX, RichTextFX           |
-| **Backend**         | Java (Core + DAO Pattern)    |
-| **Database**        | MySQL                        |
-| **Build Tool**      | Maven                        |
-| **IDE**             | Apache NetBeans              |
-| **Notifications**   | Firebase (optional)          |
-| **Styling**         | iOS-style CSS, Custom Themes |
-| **Version Control** | Git + GitHub                 |
+## 🌍 Overview
 
+**StoryLand** is a next-generation **JavaFX-based novel reading platform** that bridges creativity and technology.  
+It replicates the **NovelUp ecosystem** with complete functionality — from user registration, novel exploration, immersive reading, history tracking, to profile management — all powered by a **MySQL backend** and designed with a sleek, iOS-style interface.
 
- Project Structure
+> ✨ Built for readers. Designed for developers. Backed by innovation.
+
+---
+
+## 🧠 Core Features
+
+| Area | Description |
+|------|--------------|
+| 🎨 **Modern UI** | Smooth, minimal, and iOS-inspired layout with custom themes |
+| 📖 **Immersive Reader** | Chapter navigation slider, notes popup, emoji-rich chat-style text |
+| 📚 **Library System** | Manage All, Reading, Unread, and Finished novels |
+| 🕒 **History Tracking** | Smart logging of every reading activity |
+| 👤 **Profile Settings** | Google/Apple/email sign-in, dark mode, reading preferences |
+| 🔔 **Notifications** | Real-time updates, toasts, badges, Firebase-ready |
+| ⚙️ **Admin Dashboard** | Manage novels, users, categories, and reports |
+| ☁️ **Database Integration** | Full DAO-based MySQL backend |
+| 💬 **Feedback & Support** | Built-in help & feedback system |
+
+---
+
+## 🧱 Tech Stack
+
+| Layer | Technology |
+|-------|-------------|
+| **Frontend (UI)** | JavaFX, RichTextFX |
+| **Backend** | Java (Core + DAO Pattern) |
+| **Database** | MySQL |
+| **Build Tool** | Maven |
+| **IDE** | Apache NetBeans |
+| **Styling** | iOS-style CSS, ThemeManager |
+| **Notifications** | Firebase (optional) |
+| **Version Control** | Git + GitHub |
+
+---
+
+## 🗂️ Project Structure
 
 ```
-NovelUp/
+
+StoryLand/
 │
 ├── src/
 │   ├── Main.java
 │   ├── Models/
 │   │   ├── User.java
 │   │   ├── Novel.java
-│   │   ├── NovelHistoryItem.java
-│   │   └── Notification.java
+│   │   ├── Notification.java
+│   │   └── NovelHistoryItem.java
 │   │
 │   ├── Controller/
 │   │   ├── NovelController.java
@@ -60,108 +89,59 @@ NovelUp/
 │   │   ├── LoginPage.java
 │   │   ├── LandingPage.java
 │   │   ├── LibraryPane.java
-│   │   ├── HistoryScreenPane.java
 │   │   ├── ProfileSettingsPane.java
+│   │   ├── HistoryScreenPane.java
 │   │   ├── NotificationScreenPane.java
 │   │   ├── NovelAdminScreenPane.java
 │   │   ├── ChapterListScreenPane.java
 │   │   └── HelpFeedbackScreenPane.java
 │   │
-│   ├── utils/
-│   │   ├── ThemeManager.java
-│   │   ├── DialogUtils.java
-│   │   └── FileUtils.java
-│   │
-│   └── resources/
-│       ├── styles.css
-│       └── app_icon.png
+│   └── utils/
+│       ├── ThemeManager.java
+│       ├── DialogUtils.java
+│       └── FileUtils.java
 │
 └── pom.xml
-```
 
+````
 
+---
 
- Setup Instructions
+## ⚙️ Installation & Setup
 
- 1. Prerequisites
+### Prerequisites
+- Java 17+
+- Apache NetBeans or IntelliJ IDEA
+- MySQL Server
+- Maven
 
-* **Java 17 or higher**
-* **Apache NetBeans** (or IntelliJ/Eclipse)
-* **MySQL Server**
-* **Maven**
-
- 2. Clone Repository
-
+### Clone the Repository
 ```bash
-git clone https://github.com/yourusername/NovelUp.git
-cd NovelUp
-```
+git clone https://github.com/amoney79/StoryLand.git
+cd StoryLand
+````
 
- 3. Configure Database
-
-Create a MySQL database named `novelup_db` and run:
+### Configure Database
 
 ```sql
-CREATE DATABASE novelup_db;
-USE novelup_db;
+CREATE DATABASE storyland_db;
+USE storyland_db;
 
--- Users table
-CREATE TABLE users (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(100),
-  email VARCHAR(100) UNIQUE,
-  password VARCHAR(255),
-  joined_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
--- Novels table
-CREATE TABLE novels (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  title VARCHAR(200),
-  author VARCHAR(100),
-  description TEXT,
-  cover_url VARCHAR(255),
-  file_path VARCHAR(255),
-  status ENUM('reading','unread','finished') DEFAULT 'unread'
-);
-
--- History table
-CREATE TABLE novel_history (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  user_id INT,
-  novel_id INT,
-  last_read TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  FOREIGN KEY (user_id) REFERENCES users(id),
-  FOREIGN KEY (novel_id) REFERENCES novels(id)
-);
-
--- Notifications
-CREATE TABLE notifications (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  title VARCHAR(200),
-  message TEXT,
-  type VARCHAR(50),
-  is_read BOOLEAN DEFAULT FALSE,
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
+CREATE TABLE users (...);
+CREATE TABLE novels (...);
+CREATE TABLE novel_history (...);
+CREATE TABLE notifications (...);
 ```
 
- 4. Configure Database Connection
-
-Edit **`db/DBConnection.java`**:
+Then edit in `db/DBConnection.java`:
 
 ```java
-private static final String URL = "jdbc:mysql://localhost:3306/novelup_db";
+private static final String URL = "jdbc:mysql://localhost:3306/storyland_db";
 private static final String USER = "root";
 private static final String PASSWORD = "your_password";
 ```
 
- 5. Run the App
-
-In NetBeans:
-
-* Right-click the project → **Run**
-* Or via terminal:
+### Run the App
 
 ```bash
 mvn clean javafx:run
@@ -169,162 +149,114 @@ mvn clean javafx:run
 
 ---
 
- Features Breakdown
+## 🧩 UI Highlights
 
- Landing Page
+✨ **Landing Page**
 
-* Displays novels in scrollable grid format.
-* Auto-loads more novels on reaching the bottom (no button required).
-* Borders and padding adjusted for minimal look.
+* Auto-loads novels on scroll
+* Minimal, borderless display
 
- Library Section
+📚 **Library Pane**
 
-* Tabs: **All**, **Reading**, **Unread**, **Finished**
-* Allows switching between categories seamlessly.
-* Displays saved novels per user.
+* Filter by All / Reading / Unread / Finished
 
- History Section
+🕒 **History Screen**
 
-* Tracks every novel a user reads.
-* Displays date/time and title.
-* Sorted by most recent reading activity.
+* Displays reading timeline per user
 
- Profile Settings Pane
+👤 **Profile Settings**
 
-* **Google/Apple/Email Sign-in**
-* **Edit Profile** and **Preferences**
-* **Dark Mode toggle** (via `ThemeManager`)
-* **History, Downloads, Notifications, About, Help & Feedback**
-* Buttons appear on left, content loads dynamically on the right.
+* Dynamic content switching
+* Dark mode toggle
+* About, Help, Feedback, and Rate Us integrated
 
- Notification Screen
+🔔 **Notification Screen**
 
-* Displays updates, new chapters, and suggestions.
-* **Mark as read/unread**
-* **Real-time toast popups**
-* **Badge count for unread**
-* **Clear all notifications**
-* Persistent storage and optional Firebase integration.
+* Realtime updates, badges, and clear-all button
 
- Chapter List Screen
+📖 **Chapter Screen**
 
-* Scrollable chapter list from database.
-* **Slider navigation** for next/previous.
-* **Content/Notes popup** view.
-* **Reading settings panel** with:
+* RichTextFX reader with highlights, notes, emojis, and page flip
 
-  * Brightness, font size, line spacing, background color.
-  * Page flip effect.
-* **Long-press** on text → highlight, bookmark, add notes.
-* WhatsApp-style **RichTextFX** reader with emojis.
+⚙️ **Admin Panel**
 
- Admin Panel
+* Real-time novel/user management
 
-* Admin can manage novels, users, and categories.
-* Displays real-time data and integrates into `ProfileSettingsPane` using `showContent()` method.
+---
 
+## 💼 For Investors & Business Partners
 
+**StoryLand Studios** envisions the future of intelligent reading — a space where literature meets adaptive technology.
 
- Utilities
+### Why Invest?
 
-* **ThemeManager.java** – toggles dark/light themes globally.
-* **FileUtils.java** – handles file loading and PDF paths.
-* **DialogUtils.java** – standard alert, confirmation, and toast handling.
+* 📈 Rapidly growing e-reading market
+* 💡 Proprietary JavaFX reading engine
+* 🌐 Expandable to cloud & mobile platforms
+* 🤝 Transparent data & user analytics integration
 
+**We are open to:**
 
+* Investment partnerships 💰
+* Strategic collaborations 🤝
+* Joint publishing ventures 📚
 
- Testing & Debugging
+📧 **Contact:** [mackenziejoseph396@gmail.com](mailto:mackenziejoseph396@gmail.com)
 
-Use the built-in `SettingsDAO` and `HistoryDAO` logs to verify:
+---
 
-* Database connections
-* Auto-loading behavior
-* Notification refresh cycle
-* Real data rendering in panes
+## 👨‍💻 For Developers
 
+Interested in contributing? Here’s how:
 
+```bash
+# Fork and clone
+git clone https://github.com/amoney79/StoryLand.git
 
- UI Highlights
+# Create your branch
+git checkout -b feature/awesome-feature
 
-* Rounded buttons, toggles, and panels (iOS style)
-* Soft shadows and minimal borders
-* Smooth animations and transitions
-* Adaptive layout for all resolutions
-
-
-
- Maven Dependencies (pom.xml)
-
-Key dependencies used:
-
-```xml
-<dependencies>
-    <!-- JavaFX -->
-    <dependency>
-        <groupId>org.openjfx</groupId>
-        <artifactId>javafx-controls</artifactId>
-        <version>21</version>
-    </dependency>
-
-    <!-- RichTextFX -->
-    <dependency>
-        <groupId>org.fxmisc.richtext</groupId>
-        <artifactId>richtextfx</artifactId>
-        <version>0.11.1</version>
-    </dependency>
-
-    <!-- MySQL -->
-    <dependency>
-        <groupId>mysql</groupId>
-        <artifactId>mysql-connector-java</artifactId>
-        <version>8.0.33</version>
-    </dependency>
-
-    <!-- Maven JavaFX Plugin -->
-    <dependency>
-        <groupId>org.openjfx</groupId>
-        <artifactId>javafx-maven-plugin</artifactId>
-        <version>0.0.8</version>
-    </dependency>
-</dependencies>
+# Commit and push
+git commit -m "Add awesome feature"
+git push origin feature/awesome-feature
 ```
 
+Then open a Pull Request!
 
+---
 
- Developer
+## 💰 For Sponsors
 
-**Author:** Joseph Amani
-**Role:** Full-Stack Java Developer
-**Focus:** JavaFX, MySQL, REST API Integration, UI/UX polish
+Support open-source innovation with **StoryLand Studios** 🌍
+Your sponsorship helps us build:
 
+* Real-time sync APIs
+* Mobile extensions
+* AI-based recommendation systems
 
+[![Sponsor](https://img.shields.io/badge/Sponsor%20on-GitHub-ff69b4?logo=github)](https://github.com/sponsors/amoney79)
 
- Roadmap
+---
 
-* [x] Profile Settings & Library Integration
-* [x] Notification System
-* [x] Admin Panel
-* [x] Reading Screen with RichTextFX
-* [ ] Cloud sync via REST API
-* [ ] Multi-user collaboration features
+## 🧑‍💼 Developer Profile
 
+**👨‍💻 Author:** [Joseph Makenzi](https://github.com/amoney79)
+**💼 Role:** Full-Stack Java Developer
+**📧 Contact:** [mackenziejoseph396@gmail.com](mailto:mackenziejoseph396@gmail.com)
+**🐦 Twitter:** [@Ma_ck_enzie_J](https://x.com/Ma_ck_enzie_J)
+**🏢 Organization:** StoryLand Studios
 
+---
 
- License
+## 📜 License
 
-This project is released under the **MIT License**.
-You’re free to use, modify, and distribute it with attribution.
+Licensed under the **MIT License** — feel free to use, modify, and distribute with proper credit.
 
+---
 
+<div align="center">
 
-⭐ Support
+⭐ **If you love StoryLand, star this repository to support development!** ⭐ <br/> <img src="/assets/storyland_footer.png" width="70%" alt="StoryLand Footer"/>
 
-If you find this project helpful:
-
-⭐ Star it on GitHub
-
-🐛 Report issues or suggest features
-
-☕ Buy the developer a coffee 😄
-
-
+</div>
+```
