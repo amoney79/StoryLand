@@ -55,6 +55,8 @@ public class SignInSignUp extends JFrame {
         // Placeholder authentication check
         if (username.equals("user") && password.equals("pass")) {
             JOptionPane.showMessageDialog(this, "Login Successful!", "Success", JOptionPane.INFORMATION_MESSAGE);
+            new MainUserFrame().setVisible(true);
+            this.dispose();
         } else {
             JOptionPane.showMessageDialog(this, "Invalid Credentials", "Error", JOptionPane.ERROR_MESSAGE);
         }
