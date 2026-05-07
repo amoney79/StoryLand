@@ -8,14 +8,21 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import javafx.scene.Parent;
 import javafx.stage.Stage;
 
 public class LandingPage {
 
     private BorderPane mainLayout;
     private StackPane contentArea;
+    private Models.User user;
 
-    public void start(Stage primaryStage) {
+    public LandingPage(Models.User user) {
+        this.user = user;
+        initialize();
+    }
+
+    private void initialize() {
         mainLayout = new BorderPane();
         mainLayout.setStyle("-fx-background-color: #f8f9fa;");
 
@@ -35,11 +42,10 @@ public class LandingPage {
         showLibrary();
 
         mainLayout.setCenter(contentArea);
+    }
 
-        Scene scene = new Scene(mainLayout, 1100, 800);
-        primaryStage.setTitle("StoryLand - Home");
-        primaryStage.setScene(scene);
-        primaryStage.show();
+    public Parent getRoot() {
+        return mainLayout;
     }
 
     private HBox createHeader() {

@@ -40,4 +40,26 @@ public class UserDAO {
         }
         return null;
     }
+
+    public static User authenticate(String username, String password) {
+        String sql = "SELECT * FROM users WHERE (username = ? OR email = ?) AND password = ?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, username);
+            pstmt.setString(2, username);
+            pstmt.setString(3, password);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                return new User(
+                    rs.getInt("id"),
+                    rs.getString("username"),
+                    rs.getString("email"),
+                    rs.getString("password")
+                );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
