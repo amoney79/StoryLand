@@ -7,34 +7,65 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
 public class ProfileSettingsPane {
-    public Pane getPane() {
+    public Region getPane() {
         VBox root = new VBox(25);
-        root.setPadding(new Insets(20));
-        root.setMaxWidth(600);
+        root.setPadding(new Insets(10));
+        root.getStylesheets().add(getClass().getResource("/styles/main.css").toExternalForm());
 
-        Label title = new Label("Profile Settings");
-        title.setFont(Font.font("System", FontWeight.BOLD, 24));
+        Label title = new Label("Account Settings");
+        title.setFont(Font.font("Arial", FontWeight.BOLD, 28));
+        title.setTextFill(javafx.scene.paint.Color.WHITE);
 
-        GridPane grid = new GridPane();
-        grid.setHgap(15);
-        grid.setVgap(15);
+        VBox formCard = new VBox(20);
+        formCard.getStyleClass().add("card");
+        formCard.setPadding(new Insets(30));
+        formCard.setMaxWidth(600);
 
-        grid.add(new Label("Username:"), 0, 0);
-        TextField usernameField = new TextField("User123");
-        grid.add(usernameField, 1, 0);
-
-        grid.add(new Label("Email:"), 0, 1);
-        TextField emailField = new TextField("user@example.com");
-        grid.add(emailField, 1, 1);
-
-        grid.add(new Label("New Password:"), 0, 2);
-        PasswordField passField = new PasswordField();
-        grid.add(passField, 1, 2);
+        formCard.getChildren().addAll(
+            createFieldGroup("Username", "user123"),
+            createFieldGroup("Email Address", "user@novelup.com"),
+            createPasswordFieldGroup("New Password"),
+            createPasswordFieldGroup("Confirm Password")
+        );
 
         Button saveBtn = new Button("Save Changes");
-        saveBtn.setStyle("-fx-background-color: #2ecc71; -fx-text-fill: white; -fx-font-weight: bold;");
+        saveBtn.getStyleClass().add("primary-button");
+        saveBtn.setPrefWidth(200);
         
-        root.getChildren().addAll(title, grid, saveBtn);
+        HBox footer = new HBox(saveBtn);
+        footer.setAlignment(javafx.geometry.Pos.CENTER_RIGHT);
+
+        formCard.getChildren().add(footer);
+        root.getChildren().addAll(title, formCard);
+        
         return root;
+    }
+
+    private VBox createFieldGroup(String label, String value) {
+        VBox group = new VBox(8);
+        Label lbl = new Label(label);
+        lbl.getStyleClass().add("novel-author");
+        lbl.setStyle("-fx-font-weight: bold;");
+        
+        TextField field = new TextField(value);
+        field.getStyleClass().add("search-field");
+        field.setPrefHeight(40);
+        
+        group.getChildren().addAll(lbl, field);
+        return group;
+    }
+
+    private VBox createPasswordFieldGroup(String label) {
+        VBox group = new VBox(8);
+        Label lbl = new Label(label);
+        lbl.getStyleClass().add("novel-author");
+        lbl.setStyle("-fx-font-weight: bold;");
+        
+        PasswordField field = new PasswordField();
+        field.getStyleClass().add("search-field");
+        field.setPrefHeight(40);
+        
+        group.getChildren().addAll(lbl, field);
+        return group;
     }
 }

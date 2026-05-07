@@ -12,7 +12,7 @@ import javafx.scene.text.FontWeight;
 
 public class DashboardPane {
 
-    public Pane getPane() {
+    public Region getPane() {
         VBox root = new VBox(30);
         root.setFillWidth(true);
 
@@ -163,6 +163,14 @@ public class DashboardPane {
 
         card.getChildren().addAll(cover, titleLbl, authorLbl, ratingLbl);
         
+        // Click effect
+        card.setOnMouseClicked(e -> {
+            Models.Novel novelObj = new Models.Novel(0, title, author, 
+                "An amazing story that will keep you on the edge of your seat. Explore the world of " + title + " and discover secrets hidden for ages.",
+                coverUrl, Double.parseDouble(rating), "Fantasy");
+            LandingPage.getInstance().showNovelDetail(novelObj);
+        });
+
         // Hover effect
         card.setOnMouseEntered(e -> card.setStyle("-fx-background-color: #334155; -fx-background-radius: 15;"));
         card.setOnMouseExited(e -> card.setStyle("-fx-background-color: #1e293b; -fx-background-radius: 15;"));

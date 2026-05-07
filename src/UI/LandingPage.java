@@ -17,11 +17,17 @@ public class LandingPage {
 
     private BorderPane mainLayout;
     private StackPane contentArea;
-    private User user;
+    private Models.User user;
+    private static LandingPage instance;
 
-    public LandingPage(User user) {
+    public LandingPage(Models.User user) {
         this.user = user;
+        instance = this;
         initialize();
+    }
+
+    public static LandingPage getInstance() {
+        return instance;
     }
 
     private void initialize() {
@@ -147,6 +153,10 @@ public class LandingPage {
 
     private void showSettings() {
         contentArea.getChildren().setAll(new ProfileSettingsPane().getPane());
+    }
+
+    public void showNovelDetail(Models.Novel novel) {
+        contentArea.getChildren().setAll(new NovelDetailScreen(novel).getPane());
     }
 
     private void handleLogout() {

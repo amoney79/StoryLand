@@ -8,7 +8,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
 public class HistoryScreenPane {
-    public Pane getPane() {
+    public Region getPane() {
         VBox root = new VBox(25);
         root.setPadding(new Insets(10));
         root.getStylesheets().add(getClass().getResource("/styles/main.css").toExternalForm());
