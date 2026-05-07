@@ -9,46 +9,53 @@ import javafx.scene.text.FontWeight;
 
 public class LibraryPane {
     public Pane getPane() {
-        VBox root = new VBox(20);
+        VBox root = new VBox(25);
         root.setPadding(new Insets(10));
+        root.getStylesheets().add(getClass().getResource("/styles/main.css").toExternalForm());
 
-        Label title = new Label("Your Library");
-        title.setFont(Font.font("System", FontWeight.BOLD, 24));
-        title.setTextFill(Color.web("#2c3e50"));
+        Label title = new Label("My Library");
+        title.setFont(Font.font("Arial", FontWeight.BOLD, 28));
+        title.setTextFill(Color.WHITE);
 
-        FlowPane novelGrid = new FlowPane();
-        novelGrid.setHgap(20);
-        novelGrid.setVgap(20);
-
-        // Mock novels
-        novelGrid.getChildren().addAll(
-            createNovelCard("Dr. Love", "Love Mister"),
-            createNovelCard("Breaking Chains", "Author Name"),
-            createNovelCard("Introvert Girl", "Author Name"),
-            createNovelCard("MoonLit", "Author Name")
+        FlowPane grid = new FlowPane(20, 30);
+        grid.getChildren().addAll(
+            createNovelCard("Dr. Love", "Love Mister", "4.5", "https://picsum.photos/seed/10/200/300"),
+            createNovelCard("Breaking Chains", "Author Name", "4.8", "https://picsum.photos/seed/11/200/300"),
+            createNovelCard("Introvert Girl", "Author Name", "4.7", "https://picsum.photos/seed/12/200/300"),
+            createNovelCard("MoonLit", "Author Name", "4.9", "https://picsum.photos/seed/13/200/300")
         );
 
-        root.getChildren().addAll(title, novelGrid);
-        return root;
+        root.getChildren().addAll(title, grid);
+        
+        ScrollPane scroll = new ScrollPane(root);
+        scroll.setFitToWidth(true);
+        scroll.setStyle("-fx-background: transparent; -fx-background-color: transparent;");
+        
+        return scroll;
     }
 
-    private VBox createNovelCard(String title, String author) {
+    private VBox createNovelCard(String title, String author, String rating, String coverUrl) {
         VBox card = new VBox(10);
+        card.getStyleClass().add("card");
         card.setPadding(new Insets(10));
-        card.setStyle("-fx-background-color: white; -fx-background-radius: 8; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 2);");
-        card.setPrefWidth(160);
+        card.setPrefWidth(180);
 
-        Region cover = new Region();
-        cover.setPrefHeight(220);
-        cover.setStyle("-fx-background-color: #ddd; -fx-background-radius: 4;");
+        ImageView cover = new ImageView();
+        cover.setFitWidth(160);
+        cover.setFitHeight(230);
+        javafx.scene.shape.Rectangle clip = new javafx.scene.shape.Rectangle(160, 230);
+        clip.setArcWidth(15);
+        clip.setArcHeight(15);
+        cover.setClip(clip);
+
+        try {
+            cover.setImage(new Image(coverUrl, 160, 230, true, true));
+        } catch (Exception e) {}
 
         Label titleLbl = new Label(title);
-        titleLbl.setFont(Font.font("System", FontWeight.BOLD, 14));
-        titleLbl.setWrapText(true);
-
+        titleLbl.getStyleClass().add("novel-title");
         Label authorLbl = new Label(author);
-        authorLbl.setFont(Font.font("System", 12));
-        authorLbl.setTextFill(Color.GRAY);
+        authorLbl.getStyleClass().add("novel-author");
 
         card.getChildren().addAll(cover, titleLbl, authorLbl);
         return card;
