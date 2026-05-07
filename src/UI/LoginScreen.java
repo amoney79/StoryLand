@@ -13,7 +13,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
-import javafx.scene.text.Font;
 import javafx.util.Duration;
 import utils.ScreenManager;
 

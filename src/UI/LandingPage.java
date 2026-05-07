@@ -17,10 +17,10 @@ public class LandingPage {
 
     private BorderPane mainLayout;
     private StackPane contentArea;
-    private Models.User user;
+    private User user;
     private static LandingPage instance;
 
-    public LandingPage(Models.User user) {
+    public LandingPage(User user) {
         this.user = user;
         instance = this;
         initialize();
@@ -134,7 +134,7 @@ public class LandingPage {
         return btn;
     }
 
-    private void showDashboard() {
+    public void showDashboard() {
         // We'll create a DashboardPane soon
         contentArea.getChildren().setAll(new DashboardPane().getPane());
     }

@@ -19,7 +19,7 @@ public class NovelDetailScreen {
         this.novel = novel;
     }
 
-    public Pane getPane() {
+    public Region getPane() {
         VBox root = new VBox(30);
         root.setPadding(new Insets(10));
         root.getStylesheets().add(getClass().getResource("/styles/main.css").toExternalForm());

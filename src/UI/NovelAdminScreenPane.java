@@ -18,7 +18,7 @@ public class NovelAdminScreenPane {
         
         Label title = new Label("Novel Administration");
         title.setFont(Font.font("Arial", FontWeight.BOLD, 28));
-        title.setTextFill(javafx.scene.paint.Color.WHITE);
+        title.setTextFill(Color.WHITE);
         
         Region spacer = new Region();
         HBox.setHgrow(spacer, Priority.ALWAYS);
