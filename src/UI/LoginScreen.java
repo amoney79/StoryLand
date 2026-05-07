@@ -37,7 +37,7 @@ public class LoginScreen {
         root = new StackPane();
         root.setAlignment(Pos.CENTER);
         root.getStyleClass().add("login-root");
-        root.getStylesheets().add(getClass().getResource("/styles/login.css").toExternalForm());
+        root.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
 
         card = new VBox(14);
         card.setPadding(new Insets(28));
@@ -101,11 +101,11 @@ public class LoginScreen {
         registerBtn.getStyleClass().add("secondary-button");
 
         Button googleBtn = new Button("Continue with Google");
-        googleBtn.getStyleClass().add("social-button");
+        googleBtn.getStyleClass().addAll("social-button", "google-btn");
         googleBtn.setMaxWidth(Double.MAX_VALUE);
         
         Button appleBtn = new Button("Continue with Apple ID");
-        appleBtn.getStyleClass().add("social-button");
+        appleBtn.getStyleClass().addAll("social-button", "apple-btn");
         appleBtn.setMaxWidth(Double.MAX_VALUE);
 
         profilePic = new ImageView();

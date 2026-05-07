@@ -106,17 +106,29 @@
 }
 
 .social-button:hover {
-    -fx-background-color: rgba(255, 255, 255, 0.1);
+    -fx-background-color: rgba(255, 255, 255, 0.12);
+    -fx-border-color: rgba(255, 255, 255, 0.2);
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.15), 15, 0, 0, 5);
 }
 
 .google-btn {
-    -fx-border-color: rgba(234, 67, 53, 0.5);
-    border-color: rgba(234, 67, 53, 0.5);
+    -fx-border-color: rgba(234, 67, 53, 0.4);
+    border-color: rgba(234, 67, 53, 0.4);
+}
+
+.google-btn:hover {
+    -fx-border-color: #ea4335;
+    -fx-background-color: rgba(234, 67, 53, 0.08);
 }
 
 .apple-btn {
-    -fx-border-color: rgba(255, 255, 255, 0.5);
-    border-color: rgba(255, 255, 255, 0.5);
+    -fx-border-color: rgba(255, 255, 255, 0.4);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.apple-btn:hover {
+    -fx-border-color: white;
+    -fx-background-color: rgba(255, 255, 255, 0.08);
 }
 
 .message-label {
