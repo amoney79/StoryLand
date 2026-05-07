@@ -14,6 +14,7 @@ public class MainUserFrame extends JFrame {
     private CardLayout cardLayout;
     private Color primaryColor = new Color(0, 153, 204); // A nice blue for accents
     private Color backgroundColor = Color.WHITE;
+    private Color textColor = Color.BLACK;
 
 
     public MainUserFrame() {
@@ -259,6 +260,7 @@ public class MainUserFrame extends JFrame {
 
     private void updateUIThemes() {
         contentPanel.setBackground(backgroundColor);
+        contentPanel.setForeground(textColor);
         // This is a simplified theme update. In a real app, you'd iterate through components.
         repaint();
     }
