@@ -4,7 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.net.URI;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -137,21 +136,15 @@ public class SignInSignUp extends JFrame {
 
         signUpButton.addActionListener(e -> signUp());
 
-        googleButton.addActionListener(e ->
-                socialLogin(
-                        "John Doe",
-                        "johndoe@gmail.com",
-                        "https://i.pravatar.cc/100?img=3"
-                )
-        );
+        googleButton.addActionListener(e -> socialLogin(
+                "John Doe",
+                "johndoe@gmail.com",
+                "https://i.pravatar.cc/100?img=3"));
 
-        appleButton.addActionListener(e ->
-                socialLogin(
-                        "Alice Smith",
-                        "alice@icloud.com",
-                        "https://i.pravatar.cc/100?img=5"
-                )
-        );
+        appleButton.addActionListener(e -> socialLogin(
+                "Alice Smith",
+                "alice@icloud.com",
+                "https://i.pravatar.cc/100?img=5"));
 
         passwordField.addKeyListener(new KeyAdapter() {
             @Override
@@ -260,8 +253,7 @@ public class SignInSignUp extends JFrame {
                 this,
                 "Redirecting to Sign Up Page...",
                 "Sign Up",
-                JOptionPane.INFORMATION_MESSAGE
-        );
+                JOptionPane.INFORMATION_MESSAGE);
     }
 
     private void openMainFrame(String username, String profileImageUrl) {
@@ -347,8 +339,7 @@ public class SignInSignUp extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 setLocation(
                         p.x + ((count % 2 == 0) ? 8 : -8),
-                        p.y
-                );
+                        p.y);
 
                 count++;
 
