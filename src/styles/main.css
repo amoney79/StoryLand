@@ -99,3 +99,57 @@
     font-size: 12px;
     -fx-text-fill: #94a3b8;
 }
+
+/* WhatsApp Chat Screen Styles */
+.chat-background {
+    -fx-background-color: #0b141a;
+    background-color: #0b141a;
+}
+
+.chat-bubble-received {
+    -fx-background-color: #202c33;
+    background-color: #202c33;
+    -fx-background-radius: 0 15 15 15;
+    -fx-padding: 10 15;
+    padding: 10px 15px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 5, 0, 0, 2);
+}
+
+.chat-bubble-sent {
+    -fx-background-color: #005c4b;
+    background-color: #005c4b;
+    -fx-background-radius: 15 0 15 15;
+    -fx-padding: 10 15;
+    padding: 10px 15px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 5, 0, 0, 2);
+}
+
+.chat-text {
+    -fx-fill: #e9edef;
+    fill: #e9edef;
+    -fx-font-size: 15px;
+    font-size: 15px;
+    -fx-font-family: "Segoe UI", "Inter", sans-serif;
+    font-family: "Segoe UI", "Inter", sans-serif;
+}
+
+.chat-timestamp {
+    -fx-text-fill: #8696a0;
+    -fx-font-size: 10px;
+    font-size: 10px;
+}
+
+.chat-header {
+    -fx-background-color: #202c33;
+    background-color: #202c33;
+    -fx-padding: 10 20;
+    padding: 10px 20px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 0, 2);
+}
+
+.chat-input-area {
+    -fx-background-color: #202c33;
+    background-color: #202c33;
+    -fx-padding: 12 20;
+    padding: 12px 20px;
+}
