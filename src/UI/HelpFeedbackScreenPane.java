@@ -1,3 +1,4 @@
+// Updated UI component
 package UI;
 
 import javafx.geometry.Insets;
@@ -7,7 +8,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
 public class HelpFeedbackScreenPane {
-    public Pane getPane() {
+    public Region getPane() {
         VBox root = new VBox(20);
         root.setPadding(new Insets(10));
         root.setMaxWidth(600);

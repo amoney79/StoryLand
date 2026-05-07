@@ -1,3 +1,5 @@
+package storyland;
+
 import javafx.application.Application;
 import javafx.stage.Stage;
 import UI.LoginScreen;
@@ -25,6 +27,6 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
-        launch(args);
+        Application.launch(args);
     }
 }
