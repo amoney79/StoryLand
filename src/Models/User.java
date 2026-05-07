@@ -14,6 +14,12 @@ public class User {
         this.password = password;
     }
 
+    public User(String username, String email, String profilePicture) {
+        this.username = username;
+        this.email = email;
+        this.profilePicture = profilePicture;
+    }
+
     // Getters and Setters
     public int getId() {
         return id;
@@ -48,6 +54,10 @@ public class User {
     }
 
     public String getProfilePicture() {
+        return profilePicture;
+    }
+
+    public String getProfilePicUrl() {
         return profilePicture;
     }
 

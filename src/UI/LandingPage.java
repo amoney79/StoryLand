@@ -1,28 +1,33 @@
 package UI;
 
+import Models.User;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
-import javafx.scene.Parent;
 
 public class LandingPage {
 
     private BorderPane mainLayout;
     private StackPane contentArea;
-    private Models.User user;
+    private User user;
 
-    public LandingPage(Models.User user) {
+    public LandingPage(User user) {
         this.user = user;
         initialize();
     }
 
     private void initialize() {
         mainLayout = new BorderPane();
-        mainLayout.setStyle("-fx-background-color: #f8f9fa;");
+        mainLayout.getStyleClass().add("main-root");
+        mainLayout.getStylesheets().add(getClass().getResource("/styles/main.css").toExternalForm());
 
         // Header
         HBox header = createHeader();
@@ -34,76 +39,98 @@ public class LandingPage {
 
         // Content Area
         contentArea = new StackPane();
-        contentArea.setPadding(new Insets(20));
+        contentArea.setPadding(new Insets(30));
         
-        // Default content
-        showLibrary();
+        // Show Dashboard by default
+        showDashboard();
 
         mainLayout.setCenter(contentArea);
     }
 
-    public Parent getRoot() {
-        return mainLayout;
-    }
-
     private HBox createHeader() {
-        HBox header = new HBox();
-        header.setPadding(new Insets(15, 30, 15, 30));
-        header.setStyle("-fx-background-color: white; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 5, 0, 0, 2);");
+        HBox header = new HBox(20);
+        header.getStyleClass().add("header");
+        header.setPadding(new Insets(15, 40, 15, 40));
         header.setAlignment(Pos.CENTER_LEFT);
 
-        Label logo = new Label("StoryLand");
-        logo.setFont(Font.font("System", FontWeight.BOLD, 22));
-        logo.setTextFill(Color.web("#2c3e50"));
+        Label logo = new Label("NovelUp");
+        logo.setFont(Font.font("Arial", FontWeight.BOLD, 26));
+        logo.setTextFill(Color.WHITE);
 
         Region spacer = new Region();
         HBox.setHgrow(spacer, Priority.ALWAYS);
 
         TextField searchBar = new TextField();
-        searchBar.setPromptText("Search for novels...");
-        searchBar.setPrefWidth(300);
-        searchBar.setStyle("-fx-background-radius: 20; -fx-background-color: #f1f3f4;");
+        searchBar.setPromptText("Search for novels, authors...");
+        searchBar.getStyleClass().add("search-field");
+        searchBar.setPrefWidth(400);
 
-        Label userLabel = new Label(user != null ? user.getUsername() : "Guest");
-        userLabel.setFont(Font.font("System", FontWeight.MEDIUM, 14));
-        userLabel.setTextFill(Color.web("#7f8c8d"));
-        userLabel.setPadding(new Insets(0, 0, 0, 15));
+        HBox userInfo = new HBox(12);
+        userInfo.setAlignment(Pos.CENTER_RIGHT);
+        
+        Label userName = new Label(user != null ? user.getUsername() : "Guest");
+        userName.getStyleClass().add("novel-title");
+        
+        ImageView avatar = new ImageView();
+        avatar.setFitWidth(35);
+        avatar.setFitHeight(35);
+        Circle clip = new Circle(17.5, 17.5, 17.5);
+        avatar.setClip(clip);
+        
+        if (user != null && user.getProfilePicUrl() != null && !user.getProfilePicUrl().isBlank()) {
+            avatar.setImage(new Image(user.getProfilePicUrl(), 35, 35, true, true));
+        } else {
+            // Placeholder
+            avatar.setImage(new Image("https://ui-avatars.com/api/?name=" + (user != null ? user.getUsername() : "G") + "&background=3b82f6&color=fff"));
+        }
 
-        header.getChildren().addAll(logo, spacer, searchBar, userLabel);
+        userInfo.getChildren().addAll(userName, avatar);
+
+        header.getChildren().addAll(logo, searchBar, spacer, userInfo);
         return header;
     }
 
     private VBox createSidebar() {
-        VBox sidebar = new VBox(10);
-        sidebar.setPadding(new Insets(20, 10, 20, 10));
-        sidebar.setPrefWidth(220);
-        sidebar.setStyle("-fx-background-color: white; -fx-border-color: #eee; -fx-border-width: 0 1 0 0;");
+        VBox sidebar = new VBox(8);
+        sidebar.getStyleClass().add("sidebar");
+        sidebar.setPadding(new Insets(30, 15, 30, 15));
+        sidebar.setPrefWidth(240);
+
+        Label menuLabel = new Label("MENU");
+        menuLabel.setStyle("-fx-text-fill: #475569; -fx-font-size: 11px; -fx-font-weight: bold;");
+        menuLabel.setPadding(new Insets(0, 0, 10, 15));
 
         sidebar.getChildren().addAll(
-            createNavButton("Library", e -> showLibrary()),
-            createNavButton("History", e -> showHistory()),
-            createNavButton("Notifications", e -> showNotifications()),
-            createNavButton("Settings", e -> showSettings()),
-            createNavButton("Admin", e -> showAdmin()),
-            createNavButton("Help & Feedback", e -> showHelp())
+            menuLabel,
+            createNavButton("🏠  Dashboard", e -> showDashboard()),
+            createNavButton("📚  My Library", e -> showLibrary()),
+            createNavButton("📜  Reading History", e -> showHistory()),
+            createNavButton("🔔  Notifications", e -> showNotifications()),
+            createNavButton("⚙️  Settings", e -> showSettings())
         );
+
+        Region spacer = new Region();
+        VBox.setVgrow(spacer, Priority.ALWAYS);
+        sidebar.getChildren().add(spacer);
+
+        Button logoutBtn = createNavButton("🚪  Logout", e -> handleLogout());
+        logoutBtn.setStyle("-fx-text-fill: #ef4444;");
+        sidebar.getChildren().add(logoutBtn);
 
         return sidebar;
     }
 
     private Button createNavButton(String text, javafx.event.EventHandler<javafx.event.ActionEvent> handler) {
         Button btn = new Button(text);
-        btn.setAlignment(Pos.CENTER_LEFT);
+        btn.getStyleClass().add("nav-button");
         btn.setPrefWidth(Double.MAX_VALUE);
-        btn.setPadding(new Insets(12, 15, 12, 15));
-        btn.setStyle("-fx-background-color: transparent; -fx-text-fill: #34495e; -fx-font-size: 14px; -fx-cursor: hand;");
         btn.setOnAction(handler);
-
-        // Hover effect
-        btn.setOnMouseEntered(e -> btn.setStyle("-fx-background-color: #f1f3f4; -fx-text-fill: #3498db; -fx-font-size: 14px; -fx-cursor: hand;"));
-        btn.setOnMouseExited(e -> btn.setStyle("-fx-background-color: transparent; -fx-text-fill: #34495e; -fx-font-size: 14px; -fx-cursor: hand;"));
-
         return btn;
+    }
+
+    private void showDashboard() {
+        // We'll create a DashboardPane soon
+        contentArea.getChildren().setAll(new DashboardPane().getPane());
     }
 
     private void showLibrary() {
@@ -122,11 +149,11 @@ public class LandingPage {
         contentArea.getChildren().setAll(new ProfileSettingsPane().getPane());
     }
 
-    private void showAdmin() {
-        contentArea.getChildren().setAll(new NovelAdminScreenPane().getPane());
+    private void handleLogout() {
+        utils.ScreenManager.showScreen("LoginScreen");
     }
 
-    private void showHelp() {
-        contentArea.getChildren().setAll(new HelpFeedbackScreenPane().getPane());
+    public Parent getRoot() {
+        return mainLayout;
     }
 }

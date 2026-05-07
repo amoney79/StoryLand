@@ -1,0 +1,77 @@
+.main-root {
+    -fx-background-color: #0f172a;
+}
+
+.sidebar {
+    -fx-background-color: rgba(30, 41, 59, 0.7);
+    -fx-border-color: rgba(255, 255, 255, 0.05);
+    -fx-border-width: 0 1 0 0;
+}
+
+.nav-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #94a3b8;
+    -fx-font-size: 14px;
+    -fx-alignment: center-left;
+    -fx-padding: 12 20;
+    -fx-cursor: hand;
+    -fx-background-radius: 10;
+}
+
+.nav-button:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.05);
+    -fx-text-fill: white;
+}
+
+.nav-button-active {
+    -fx-background-color: #3b82f6;
+    -fx-text-fill: white;
+}
+
+.header {
+    -fx-background-color: rgba(15, 23, 42, 0.8);
+    -fx-border-color: rgba(255, 255, 255, 0.05);
+    -fx-border-width: 0 0 1 0;
+}
+
+.search-field {
+    -fx-background-color: rgba(255, 255, 255, 0.05);
+    -fx-background-radius: 20;
+    -fx-padding: 8 15;
+    -fx-text-fill: white;
+    -fx-prompt-text-fill: #64748b;
+}
+
+.card {
+    -fx-background-color: #1e293b;
+    -fx-background-radius: 15;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 15, 0, 0, 5);
+}
+
+.hero-banner {
+    -fx-background-radius: 20;
+    -fx-padding: 40;
+}
+
+.category-chip {
+    -fx-background-color: rgba(59, 130, 246, 0.1);
+    -fx-background-radius: 20;
+    -fx-padding: 5 15;
+    -fx-text-fill: #60a5fa;
+    -fx-cursor: hand;
+}
+
+.category-chip:hover {
+    -fx-background-color: rgba(59, 130, 246, 0.2);
+}
+
+.novel-title {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+.novel-author {
+    -fx-font-size: 12px;
+    -fx-text-fill: #94a3b8;
+}
