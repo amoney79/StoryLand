@@ -77,6 +77,9 @@ public class NovelDetailScreen {
         Button readBtn = new Button("Start Reading");
         readBtn.getStyleClass().add("primary-button");
         readBtn.setPrefWidth(180);
+        readBtn.setOnAction(e -> {
+            LandingPage.getInstance().showChapterList();
+        });
         
         Button libraryBtn = new Button("+ Add to Library");
         libraryBtn.getStyleClass().add("secondary-button");

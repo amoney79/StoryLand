@@ -159,6 +159,10 @@ public class LandingPage {
         contentArea.getChildren().setAll(new NovelDetailScreen(novel).getPane());
     }
 
+    public void showChapterList() {
+        contentArea.getChildren().setAll(new ChapterListScreenPane().getPane());
+    }
+
     private void handleLogout() {
         utils.ScreenManager.showScreen("LoginScreen");
     }
