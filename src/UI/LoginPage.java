@@ -50,9 +50,10 @@ public class LoginPage {
         loginButton.setStyle("-fx-background-color: #3498db; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-cursor: hand;");
         
         loginButton.setOnAction(e -> {
-            // Logic for login
-            LandingPage landingPage = new LandingPage();
-            landingPage.start(primaryStage);
+            // Logic for login (Mock user for now to fix compilation)
+            Models.User mockUser = new Models.User(1, "Guest", "guest@example.com", "");
+            LandingPage landingPage = new LandingPage(mockUser);
+            primaryStage.getScene().setRoot(landingPage.getRoot());
         });
 
         Hyperlink forgotPassword = new Hyperlink("Forgot Password?");

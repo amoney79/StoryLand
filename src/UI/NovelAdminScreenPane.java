@@ -18,7 +18,9 @@ public class NovelAdminScreenPane {
         TableColumn<String, String> col1 = new TableColumn<>("Title");
         TableColumn<String, String> col2 = new TableColumn<>("Author");
         TableColumn<String, String> col3 = new TableColumn<>("Actions");
-        table.getColumns().addAll(col1, col2, col3);
+        table.getColumns().add(col1);
+        table.getColumns().add(col2);
+        table.getColumns().add(col3);
 
         Button addBtn = new Button("Add New Novel");
         addBtn.setStyle("-fx-background-color: #3498db; -fx-text-fill: white;");

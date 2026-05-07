@@ -2,14 +2,12 @@ package UI;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.Parent;
-import javafx.stage.Stage;
 
 public class LandingPage {
 
@@ -66,7 +64,12 @@ public class LandingPage {
         searchBar.setPrefWidth(300);
         searchBar.setStyle("-fx-background-radius: 20; -fx-background-color: #f1f3f4;");
 
-        header.getChildren().addAll(logo, spacer, searchBar);
+        Label userLabel = new Label(user != null ? user.getUsername() : "Guest");
+        userLabel.setFont(Font.font("System", FontWeight.MEDIUM, 14));
+        userLabel.setTextFill(Color.web("#7f8c8d"));
+        userLabel.setPadding(new Insets(0, 0, 0, 15));
+
+        header.getChildren().addAll(logo, spacer, searchBar, userLabel);
         return header;
     }
 

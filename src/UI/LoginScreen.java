@@ -2,15 +2,12 @@ package UI;
 
 import Models.User;
 import db.UserDAO;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
 import utils.ScreenManager;
 
 import java.util.ArrayList;

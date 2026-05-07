@@ -1,6 +1,7 @@
 import javafx.application.Application;
 import javafx.stage.Stage;
 import UI.LoginScreen;
+import UI.RegisterScreen;
 import utils.ScreenManager;
 
 public class Main extends Application {
