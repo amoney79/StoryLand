@@ -1,88 +1,63 @@
 .root-pane {
     -fx-background-color: linear-gradient(to bottom right, #1a1a2e, #16213e, #0f3460);
-    background-color: #1a1a2e; /* Standard property for compatibility */
 }
 
 .login-card {
     -fx-background-color: rgba(255, 255, 255, 0.08);
-    background-color: rgba(255, 255, 255, 0.08);
     -fx-background-radius: 20;
     -fx-padding: 40;
-    padding: 40px;
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 30, 0, 0, 10);
     -fx-border-color: rgba(255, 255, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0.1);
     -fx-border-radius: 20;
-    border-radius: 20px;
     -fx-border-width: 1;
-    border-width: 1px;
 }
 
 .title-label {
     -fx-font-size: 32px;
-    font-size: 32px;
     -fx-font-family: "Segoe UI Semibold", "Inter", sans-serif;
-    font-family: "Segoe UI Semibold", "Inter", sans-serif;
     -fx-text-fill: white;
 }
 
 .subtitle-label {
     -fx-font-size: 14px;
-    font-size: 14px;
     -fx-text-fill: #94a3b8;
 }
 
 .text-field, .password-field {
     -fx-background-color: rgba(255, 255, 255, 0.05);
-    background-color: rgba(255, 255, 255, 0.05);
     -fx-background-radius: 10;
     -fx-padding: 12 15;
-    padding: 12px 15px;
     -fx-text-fill: white;
     -fx-prompt-text-fill: #64748b;
     -fx-border-color: rgba(255, 255, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0.1);
     -fx-border-radius: 10;
-    border-radius: 10px;
     -fx-font-size: 14px;
-    font-size: 14px;
 }
 
 .text-field:focused, .password-field:focused {
     -fx-border-color: #3b82f6;
-    border-color: #3b82f6;
     -fx-background-color: rgba(255, 255, 255, 0.1);
-    background-color: rgba(255, 255, 255, 0.1);
 }
 
 .primary-button {
     -fx-background-color: #3b82f6;
-    background-color: #3b82f6;
     -fx-background-radius: 10;
     -fx-padding: 12 20;
-    padding: 12px 20px;
     -fx-text-fill: white;
     -fx-font-size: 16px;
-    font-size: 16px;
     -fx-font-weight: bold;
-    font-weight: bold;
     -fx-cursor: hand;
-    cursor: pointer;
 }
 
 .primary-button:hover {
     -fx-background-color: #2563eb;
-    background-color: #2563eb;
 }
 
 .secondary-button {
     -fx-background-color: transparent;
-    background-color: transparent;
     -fx-text-fill: #94a3b8;
     -fx-font-size: 14px;
-    font-size: 14px;
     -fx-cursor: hand;
-    cursor: pointer;
 }
 
 .secondary-button:hover {
@@ -91,17 +66,12 @@
 
 .social-button {
     -fx-background-color: rgba(255, 255, 255, 0.05);
-    background-color: rgba(255, 255, 255, 0.05);
     -fx-background-radius: 10;
     -fx-padding: 10 20;
-    padding: 10px 20px;
     -fx-text-fill: white;
     -fx-border-color: rgba(255, 255, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0.1);
     -fx-border-radius: 10;
-    border-radius: 10px;
     -fx-cursor: hand;
-    cursor: pointer;
     -fx-pref-width: 200;
 }
 
@@ -111,16 +81,13 @@
 
 .google-btn {
     -fx-border-color: rgba(234, 67, 53, 0.5);
-    border-color: rgba(234, 67, 53, 0.5);
 }
 
 .apple-btn {
     -fx-border-color: rgba(255, 255, 255, 0.5);
-    border-color: rgba(255, 255, 255, 0.5);
 }
 
 .message-label {
     -fx-text-fill: #ef4444;
     -fx-font-size: 13px;
-    font-size: 13px;
 }
