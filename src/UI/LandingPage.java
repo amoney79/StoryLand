@@ -56,7 +56,7 @@ public class LandingPage {
         HBox.setHgrow(spacer, Priority.ALWAYS);
 
         TextField searchBar = new TextField();
-        searchBar.setPlaceholder("Search for novels...");
+        searchBar.setPromptText("Search for novels...");
         searchBar.setPrefWidth(300);
         searchBar.setStyle("-fx-background-radius: 20; -fx-background-color: #f1f3f4;");
 

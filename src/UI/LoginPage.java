@@ -35,12 +35,12 @@ public class LoginPage {
         loginBox.setMaxWidth(400);
 
         TextField emailField = new TextField();
-        emailField.setPlaceholder("Email Address");
+        emailField.setPromptText("Email Address");
         emailField.setPrefHeight(40);
         emailField.setStyle("-fx-background-radius: 5;");
 
         PasswordField passwordField = new PasswordField();
-        passwordField.setPlaceholder("Password");
+        passwordField.setPromptText("Password");
         passwordField.setPrefHeight(40);
         passwordField.setStyle("-fx-background-radius: 5;");
 

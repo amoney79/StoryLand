@@ -3,8 +3,7 @@ package storyland;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
 
 /**
  * Main application frame for StoryLand.
@@ -15,7 +14,7 @@ public class MainUserFrame extends JFrame {
     private CardLayout cardLayout;
     private Color primaryColor = new Color(0, 153, 204); // A nice blue for accents
     private Color backgroundColor = Color.WHITE;
-    private Color textColor = Color.BLACK;
+
 
     public MainUserFrame() {
         setTitle("StoryLand");
