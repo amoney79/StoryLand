@@ -193,4 +193,87 @@ public class NovelDAO {
             e.printStackTrace();
         }
     }
+
+    // Administrative Methods
+    public static boolean addNovel(Novel novel) {
+        String sql = "INSERT INTO novels (user_id, title, description, cover_image, genre, age_bracket) VALUES (?, ?, ?, ?, ?, ?)";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, novel.getUserId());
+            pstmt.setString(2, novel.getTitle());
+            pstmt.setString(3, novel.getDescription());
+            pstmt.setString(4, novel.getCoverImagePath());
+            pstmt.setString(5, novel.getGenre());
+            pstmt.setString(6, novel.getAgeBracket());
+            return pstmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public static boolean updateNovel(Novel novel) {
+        String sql = "UPDATE novels SET title = ?, description = ?, cover_image = ? WHERE id = ?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, novel.getTitle());
+            pstmt.setString(2, novel.getDescription());
+            pstmt.setString(3, novel.getCoverImagePath());
+            pstmt.setInt(4, novel.getId());
+            return pstmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public static boolean deleteNovel(int id) {
+        String sql = "DELETE FROM novels WHERE id = ?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, id);
+            return pstmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public static boolean addChapter(int novelId, String title, String content) {
+        String sqlCount = "SELECT COUNT(*) FROM chapters WHERE novel_id = ?";
+        int nextChapterNum = 1;
+        try (Connection conn = DBConnection.getConnection()) {
+            try (PreparedStatement pstmt = conn.prepareStatement(sqlCount)) {
+                pstmt.setInt(1, novelId);
+                try (ResultSet rs = pstmt.executeQuery()) {
+                    if (rs.next()) {
+                        nextChapterNum = rs.getInt(1) + 1;
+                    }
+                }
+            }
+            String sqlInsert = "INSERT INTO chapters (novel_id, title, content, chapter_number) VALUES (?, ?, ?, ?)";
+            try (PreparedStatement pstmt = conn.prepareStatement(sqlInsert)) {
+                pstmt.setInt(1, novelId);
+                pstmt.setString(2, title);
+                pstmt.setString(3, content);
+                pstmt.setInt(4, nextChapterNum);
+                return pstmt.executeUpdate() > 0;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public static boolean deleteChapter(int chapterId) {
+        String sql = "DELETE FROM chapters WHERE id = ?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, chapterId);
+            return pstmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }

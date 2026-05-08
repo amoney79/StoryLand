@@ -8,8 +8,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import javafx.scene.Cursor;
 
 public class NovelDetailScreen {
 
@@ -38,7 +40,7 @@ public class NovelDetailScreen {
         ImageView cover = new ImageView();
         cover.setFitWidth(240);
         cover.setFitHeight(340);
-        javafx.scene.shape.Rectangle clip = new javafx.scene.shape.Rectangle(240, 340);
+        Rectangle clip = new Rectangle(240, 340);
         clip.setArcWidth(20);
         clip.setArcHeight(20);
         cover.setClip(clip);
@@ -133,7 +135,7 @@ public class NovelDetailScreen {
         item.setPadding(new Insets(10, 0, 10, 0));
         item.setStyle("-fx-border-color: rgba(255,255,255,0.05); -fx-border-width: 0 0 1 0;");
         item.setAlignment(Pos.CENTER_LEFT);
-        item.setCursor(javafx.scene.Cursor.HAND);
+        item.setCursor(Cursor.HAND);
 
         Label titleLbl = new Label(title);
         titleLbl.getStyleClass().add("novel-title");

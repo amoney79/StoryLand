@@ -1,63 +1,88 @@
 .root-pane {
     -fx-background-color: linear-gradient(to bottom right, #1a1a2e, #16213e, #0f3460);
+    background-color: #1a1a2e; /* Standard property for compatibility */
 }
 
 .login-card {
     -fx-background-color: rgba(255, 255, 255, 0.08);
+    background-color: rgba(255, 255, 255, 0.08);
     -fx-background-radius: 20;
     -fx-padding: 40;
+    padding: 40px;
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 30, 0, 0, 10);
     -fx-border-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.1);
     -fx-border-radius: 20;
+    border-radius: 20px;
     -fx-border-width: 1;
+    border-width: 1px;
 }
 
 .title-label {
     -fx-font-size: 32px;
+    font-size: 32px;
     -fx-font-family: "Segoe UI Semibold", "Inter", sans-serif;
+    font-family: "Segoe UI Semibold", "Inter", sans-serif;
     -fx-text-fill: white;
 }
 
 .subtitle-label {
     -fx-font-size: 14px;
+    font-size: 14px;
     -fx-text-fill: #94a3b8;
 }
 
 .text-field, .password-field {
     -fx-background-color: rgba(255, 255, 255, 0.05);
+    background-color: rgba(255, 255, 255, 0.05);
     -fx-background-radius: 10;
     -fx-padding: 12 15;
+    padding: 12px 15px;
     -fx-text-fill: white;
     -fx-prompt-text-fill: #64748b;
     -fx-border-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.1);
     -fx-border-radius: 10;
+    border-radius: 10px;
     -fx-font-size: 14px;
+    font-size: 14px;
 }
 
 .text-field:focused, .password-field:focused {
     -fx-border-color: #3b82f6;
+    border-color: #3b82f6;
     -fx-background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
 .primary-button {
     -fx-background-color: #3b82f6;
+    background-color: #3b82f6;
     -fx-background-radius: 10;
     -fx-padding: 12 20;
+    padding: 12px 20px;
     -fx-text-fill: white;
     -fx-font-size: 16px;
+    font-size: 16px;
     -fx-font-weight: bold;
+    font-weight: bold;
     -fx-cursor: hand;
+    cursor: pointer;
 }
 
 .primary-button:hover {
     -fx-background-color: #2563eb;
+    background-color: #2563eb;
 }
 
 .secondary-button {
     -fx-background-color: transparent;
+    background-color: transparent;
     -fx-text-fill: #94a3b8;
     -fx-font-size: 14px;
+    font-size: 14px;
     -fx-cursor: hand;
+    cursor: pointer;
 }
 
 .secondary-button:hover {
@@ -66,28 +91,108 @@
 
 .social-button {
     -fx-background-color: rgba(255, 255, 255, 0.05);
+    background-color: rgba(255, 255, 255, 0.05);
     -fx-background-radius: 10;
     -fx-padding: 10 20;
+    padding: 10px 20px;
     -fx-text-fill: white;
     -fx-border-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.1);
     -fx-border-radius: 10;
+    border-radius: 10px;
     -fx-cursor: hand;
+    cursor: pointer;
     -fx-pref-width: 200;
 }
 
 .social-button:hover {
-    -fx-background-color: rgba(255, 255, 255, 0.1);
+    -fx-background-color: rgba(255, 255, 255, 0.12);
+    background-color: rgba(255, 255, 255, 0.12);
+    -fx-border-color: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.2);
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.15), 15, 0, 0, 5);
 }
 
 .google-btn {
-    -fx-border-color: rgba(234, 67, 53, 0.5);
+    -fx-border-color: rgba(234, 67, 53, 0.4);
+    border-color: rgba(234, 67, 53, 0.4);
+}
+
+.google-btn:hover {
+    -fx-border-color: #ea4335;
+    border-color: #ea4335;
+    -fx-background-color: rgba(234, 67, 53, 0.08);
+    background-color: rgba(234, 67, 53, 0.08);
 }
 
 .apple-btn {
-    -fx-border-color: rgba(255, 255, 255, 0.5);
+    -fx-border-color: rgba(255, 255, 255, 0.4);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.apple-btn:hover {
+    -fx-border-color: white;
+    border-color: white;
+    -fx-background-color: rgba(255, 255, 255, 0.08);
+    background-color: rgba(255, 255, 255, 0.08);
 }
 
 .message-label {
     -fx-text-fill: #ef4444;
     -fx-font-size: 13px;
+    font-size: 13px;
+}
+
+/* WhatsApp Chat Screen Styles */
+.chat-background {
+    -fx-background-color: #0b141a;
+    background-color: #0b141a;
+}
+
+.chat-bubble-received {
+    -fx-background-color: #202c33;
+    background-color: #202c33;
+    -fx-background-radius: 0 15 15 15;
+    -fx-padding: 10 15;
+    padding: 10px 15px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 5, 0, 0, 2);
+}
+
+.chat-bubble-sent {
+    -fx-background-color: #005c4b;
+    background-color: #005c4b;
+    -fx-background-radius: 15 0 15 15;
+    -fx-padding: 10 15;
+    padding: 10px 15px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 5, 0, 0, 2);
+}
+
+.chat-text {
+    -fx-fill: #e9edef;
+    fill: #e9edef;
+    -fx-font-size: 15px;
+    font-size: 15px;
+    -fx-font-family: "Segoe UI", "Inter", sans-serif;
+    font-family: "Segoe UI", "Inter", sans-serif;
+}
+
+.chat-timestamp {
+    -fx-text-fill: #8696a0;
+    -fx-font-size: 10px;
+    font-size: 10px;
+}
+
+.chat-header {
+    -fx-background-color: #202c33;
+    background-color: #202c33;
+    -fx-padding: 10 20;
+    padding: 10px 20px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 0, 2);
+}
+
+.chat-input-area {
+    -fx-background-color: #202c33;
+    background-color: #202c33;
+    -fx-padding: 12 20;
+    padding: 12px 20px;
 }

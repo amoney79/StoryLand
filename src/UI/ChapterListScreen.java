@@ -14,6 +14,8 @@ import javafx.scene.layout.*;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
+import javafx.beans.binding.Bindings;
+import javafx.beans.property.SimpleIntegerProperty;
 import java.util.List;
 
 public class ChapterListScreen {
@@ -23,7 +25,7 @@ public class ChapterListScreen {
     private final NovelController controller = new NovelController();
 
     private List<Chapter> chapters;
-    private int currentChapterIndex = 0;
+    private final SimpleIntegerProperty currentChapterIndex = new SimpleIntegerProperty(0);
 
     private BorderPane root;
     private VBox chatContent;
@@ -120,7 +122,7 @@ public class ChapterListScreen {
 
     private void openChapter(int index) {
         if (index < 0 || index >= chapters.size()) return;
-        currentChapterIndex = index;
+        currentChapterIndex.set(index);
         Chapter chapter = chapters.get(index);
 
         chatContent.getChildren().clear();
@@ -174,13 +176,13 @@ public class ChapterListScreen {
 
     private void updateProgress() {
         if (chapters.isEmpty()) return;
-        double progress = (double) (currentChapterIndex + 1) / chapters.size();
+        double progress = (double) (currentChapterIndex.get() + 1) / chapters.size();
         progressLabel.setText((int)(progress * 100) + "% Read");
     }
 
     private void saveProgress() {
         if (user != null) {
-            controller.saveProgress(new ReadingProgress(user.getId(), novel.getId(), currentChapterIndex, 0));
+            controller.saveProgress(new ReadingProgress(user.getId(), novel.getId(), currentChapterIndex.get(), 0));
             controller.saveHistory(user.getId(), novel.getId());
         }
     }
@@ -206,22 +208,22 @@ public class ChapterListScreen {
 
         Button prevBtn = new Button("◀ Prev Chapter");
         prevBtn.getStyleClass().add("secondary-button");
-        prevBtn.setOnAction(e -> openChapter(currentChapterIndex - 1));
-        prevBtn.disableProperty().bind(new javafx.beans.binding.BooleanBinding() {
-            { super.bind(new javafx.beans.property.SimpleIntegerProperty(currentChapterIndex)); }
-            @Override protected boolean computeValue() { return currentChapterIndex <= 0; }
-        });
+        prevBtn.setOnAction(e -> openChapter(currentChapterIndex.get() - 1));
+        prevBtn.disableProperty().bind(Bindings.createBooleanBinding(
+            () -> currentChapterIndex.get() <= 0,
+            currentChapterIndex
+        ));
 
         Region spacer = new Region();
         HBox.setHgrow(spacer, Priority.ALWAYS);
 
         Button nextBtn = new Button("Next Chapter ▶");
         nextBtn.getStyleClass().add("primary-button");
-        nextBtn.setOnAction(e -> openChapter(currentChapterIndex + 1));
-        nextBtn.disableProperty().bind(new javafx.beans.binding.BooleanBinding() {
-            { super.bind(new javafx.beans.property.SimpleIntegerProperty(currentChapterIndex)); }
-            @Override protected boolean computeValue() { return chapters != null && currentChapterIndex >= chapters.size() - 1; }
-        });
+        nextBtn.setOnAction(e -> openChapter(currentChapterIndex.get() + 1));
+        nextBtn.disableProperty().bind(Bindings.createBooleanBinding(
+            () -> chapters != null && currentChapterIndex.get() >= chapters.size() - 1,
+            currentChapterIndex
+        ));
 
         footer.getChildren().addAll(prevBtn, spacer, nextBtn);
         return footer;

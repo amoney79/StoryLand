@@ -12,6 +12,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 
 public class LandingPage {
 
@@ -126,7 +128,7 @@ public class LandingPage {
         return sidebar;
     }
 
-    private Button createNavButton(String text, javafx.event.EventHandler<javafx.event.ActionEvent> handler) {
+    private Button createNavButton(String text, EventHandler<ActionEvent> handler) {
         Button btn = new Button(text);
         btn.getStyleClass().add("nav-button");
         btn.setPrefWidth(Double.MAX_VALUE);

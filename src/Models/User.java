@@ -6,21 +6,32 @@ public class User {
     private String email;
     private String password;
     private String profilePicture;
+    private String role;
 
     public User(int id, String username, String email, String password) {
         this.id = id;
         this.username = username;
         this.email = email;
         this.password = password;
+        this.role = "user"; // Default role
     }
 
     public User(String username, String email, String profilePicture) {
         this.username = username;
         this.email = email;
         this.profilePicture = profilePicture;
+        this.role = "user";
     }
 
     // Getters and Setters
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
     public int getId() {
         return id;
     }

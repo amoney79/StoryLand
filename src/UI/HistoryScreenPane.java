@@ -4,6 +4,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
@@ -15,7 +16,7 @@ public class HistoryScreenPane {
 
         Label title = new Label("Reading History");
         title.setFont(Font.font("Arial", FontWeight.BOLD, 28));
-        title.setTextFill(javafx.scene.paint.Color.WHITE);
+        title.setTextFill(Color.WHITE);
 
         VBox historyList = new VBox(15);
         historyList.setPadding(new Insets(20));

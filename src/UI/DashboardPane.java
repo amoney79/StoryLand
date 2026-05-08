@@ -7,8 +7,11 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import javafx.scene.Cursor;
+import javafx.scene.layout.Priority;
 
 public class DashboardPane {
 
@@ -132,7 +135,7 @@ public class DashboardPane {
         card.getStyleClass().add("card");
         card.setPadding(new Insets(10));
         card.setPrefWidth(180);
-        card.setCursor(javafx.scene.Cursor.HAND);
+        card.setCursor(Cursor.HAND);
 
         ImageView cover = new ImageView();
         cover.setFitWidth(160);
@@ -140,7 +143,7 @@ public class DashboardPane {
         cover.getStyleClass().add("novel-cover");
         
         // Use a clip to round the image corners
-        javafx.scene.shape.Rectangle clip = new javafx.scene.shape.Rectangle(160, 230);
+        Rectangle clip = new Rectangle(160, 230);
         clip.setArcWidth(15);
         clip.setArcHeight(15);
         cover.setClip(clip);
