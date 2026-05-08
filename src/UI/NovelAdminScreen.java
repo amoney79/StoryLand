@@ -10,13 +10,11 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.FileChooser;
-import utils.ExploreScreenHelper;
-
 import java.io.File;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class NovelAdminScreen implements ProfileSettingsScreen.SceneAware {
+public class NovelAdminScreen implements ProfileSettingsPane.SceneAware {
     private final User currentUser;
     private final UserDAO userDAO = new UserDAO();
     private final NovelDAO novelDAO = new NovelDAO();
@@ -97,7 +95,7 @@ public class NovelAdminScreen implements ProfileSettingsScreen.SceneAware {
             novel.setGenre(genre);
             novel.setAgeBracket(age);
 
-            boolean success = novelDAO.addNovel(novel);
+            boolean success = NovelDAO.addNovel(novel);
             showAlert(success ? "✅ Novel added!" : "❌ Failed to add.");
             refreshListView(listView);
         });
@@ -144,7 +142,7 @@ public class NovelAdminScreen implements ProfileSettingsScreen.SceneAware {
             novel.setDescription(descField.getText());
             novel.setCoverImagePath(coverField.getText());
 
-            boolean success = novelDAO.updateNovel(novel);
+            boolean success = NovelDAO.updateNovel(novel);
             showAlert(success ? "✅ Updated!" : "❌ Update failed.");
             refreshListView(listView);
         });
@@ -169,7 +167,7 @@ public class NovelAdminScreen implements ProfileSettingsScreen.SceneAware {
 
         Button deleteBtn = new Button("Delete Novel");
         deleteBtn.setOnAction(e -> {
-            boolean success = novelDAO.deleteNovel(Integer.parseInt(idField.getText()));
+            boolean success = NovelDAO.deleteNovel(Integer.parseInt(idField.getText()));
             showAlert(success ? "✅ Deleted!" : "❌ Failed to delete.");
             refreshListView(listView);
         });
@@ -196,7 +194,7 @@ public class NovelAdminScreen implements ProfileSettingsScreen.SceneAware {
 
         Button addBtn = new Button("Add Chapter");
         addBtn.setOnAction(e -> {
-            boolean success = novelDAO.addChapter(
+            boolean success = NovelDAO.addChapter(
                     Integer.parseInt(novelIdField.getText()),
                     titleField.getText(),
                     contentField.getText());
@@ -219,7 +217,7 @@ public class NovelAdminScreen implements ProfileSettingsScreen.SceneAware {
 
         Button deleteBtn = new Button("Delete Chapter");
         deleteBtn.setOnAction(e -> {
-            boolean success = novelDAO.deleteChapter(Integer.parseInt(chapterIdField.getText()));
+            boolean success = NovelDAO.deleteChapter(Integer.parseInt(chapterIdField.getText()));
             showAlert(success ? "✅ Chapter deleted!" : "❌ Failed to delete.");
         });
 

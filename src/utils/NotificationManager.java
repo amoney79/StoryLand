@@ -38,6 +38,4 @@ public class NotificationManager {
         return NotificationStorage.fetchAll().stream()
                 .filter(n -> n.getType().equalsIgnoreCase(type)).toList();
     }
-} {
-    
 }

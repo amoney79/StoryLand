@@ -1,6 +1,5 @@
 package UI;
 
-import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -14,14 +13,14 @@ import javafx.stage.Stage;
 import Models.User;
 import utils.ThemeManager;
 
-public class ProfileSettingsScreen extends Application {
+public class ProfileSettingsPane {
     private final User currentUser;
 
-    public ProfileSettingsScreen(User user) {
+    public ProfileSettingsPane(User user) {
         this.currentUser = user;
     }
 
-    public ProfileSettingsScreen() {
+    public ProfileSettingsPane() {
         this.currentUser = null;
     }
 
@@ -29,9 +28,9 @@ public class ProfileSettingsScreen extends Application {
     private VBox sideBar;
     private StackPane contentPane;
 
-    @Override
-    public void start(Stage stage) {
+    public Region getPane() {
         mainLayout = new BorderPane();
+        mainLayout.getStyleClass().add("profile-settings-root");
 
         // Top profile
         HBox profileBar = createProfileHeader();
@@ -42,44 +41,44 @@ public class ProfileSettingsScreen extends Application {
         mainLayout.setLeft(sideBar);
 
         // Right content pane
-        contentPane = new StackPane();
-        contentPane.setPadding(new Insets(20));
-        mainLayout.setCenter(contentPane);
+        contentArea = new StackPane();
+        contentArea.setPadding(new Insets(20));
+        mainLayout.setCenter(contentArea);
 
-        Scene scene = new Scene(mainLayout, 900, 650);
-        ThemeManager.applyTheme(scene);
-        scene.getStylesheets().add(
-                getClass().getResource("/styles/ios_switch.css").toExternalForm()
-        );
+        // Default content
+        showContent(new ProfileEditScreen(currentUser));
 
-        stage.setScene(scene);
-        stage.setTitle("Profile Settings");
-        stage.show();
+        return mainLayout;
     }
+
+    private StackPane contentArea;
 
     private HBox createProfileHeader() {
         HBox profileBar = new HBox(10);
         profileBar.setPadding(new Insets(15));
         profileBar.setAlignment(Pos.CENTER_LEFT);
-        profileBar.setStyle("-fx-background-color: -fx-box-border;");
+        profileBar.setStyle("-fx-background-color: rgba(255,255,255,0.05); -fx-background-radius: 10;");
 
         if (currentUser != null) {
-            ImageView profilePic = new ImageView(new Image("/images/default_profile.jpg"));
-            profilePic.setFitWidth(60);
-            profilePic.setFitHeight(60);
+            ImageView profilePic = new ImageView();
+            try {
+                profilePic.setImage(new Image(currentUser.getProfilePicUrl() != null ? currentUser.getProfilePicUrl() : "https://ui-avatars.com/api/?name=" + currentUser.getUsername()));
+            } catch (Exception e) {
+                profilePic.setImage(new Image("https://ui-avatars.com/api/?name=User"));
+            }
+            profilePic.setFitWidth(50);
+            profilePic.setFitHeight(50);
 
             Label username = new Label(currentUser.getUsername());
-            username.setFont(Font.font(18));
+            username.setFont(Font.font("Arial", 18));
+            username.setTextFill(javafx.scene.paint.Color.WHITE);
 
             profileBar.getChildren().addAll(profilePic, username);
         } else {
             Button signIn = new Button("Sign In / Sign Up");
+            signIn.getStyleClass().add("primary-button");
             signIn.setOnAction(e -> {
-                try {
-                    new LoginScreen().start(new Stage());
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
+                utils.ScreenManager.showScreen("LoginScreen");
             });
             profileBar.getChildren().add(signIn);
         }
@@ -91,43 +90,19 @@ public class ProfileSettingsScreen extends Application {
         VBox menu = new VBox(10);
         menu.setPadding(new Insets(15));
         menu.setPrefWidth(220);
-        menu.setStyle("-fx-background-color: #F0F0F0;");
+        menu.getStyleClass().add("sidebar");
 
-        Button editProfile = new Button("✏ Edit Profile");
-        editProfile.setMaxWidth(Double.MAX_VALUE);
-        editProfile.setOnAction(e -> showContent(new ProfileEditScreen(currentUser)));
+        Button editProfile = createMenuButton("✏ Edit Profile", e -> showContent(new ProfileEditScreen(currentUser)));
+        Button history = createMenuButton("📖 History", e -> showContent(new HistoryScreenPane(currentUser)));
+        Button downloads = createMenuButton("📥 Downloads", e -> showContent(new DownloadedNovelsScreen(currentUser)));
+        Button preferences = createMenuButton("📚 Preferences", e -> showContent(new ReadingPreferencesScreen(currentUser)));
+        Button notifications = createMenuButton("🔔 Notifications", e -> showContent(new NotificationScreenPane(currentUser)));
+        Button about = createMenuButton("📄 About", e -> showContent(new AboutScreen(currentUser)));
+        Button help = createMenuButton("❓ Help & Feedback", e -> showContent(new HelpFeedbackScreen(currentUser)));
 
-        Button history = new Button("📖 History");
-        history.setMaxWidth(Double.MAX_VALUE);
-        history.setOnAction(e -> showContent(new HistoryScreen(currentUser)));
-
-        Button downloads = new Button("📥 Downloads");
-        downloads.setMaxWidth(Double.MAX_VALUE);
-        downloads.setOnAction(e -> showContent(new DownloadedNovelsScreen(currentUser)));
-
-        Button preferences = new Button("📚 Preferences");
-        preferences.setMaxWidth(Double.MAX_VALUE);
-        preferences.setOnAction(e -> showContent(new ReadingPreferencesScreen(currentUser)));
-
-        Button notifications = new Button("🔔 Notifications");
-        notifications.setMaxWidth(Double.MAX_VALUE);
-        notifications.setOnAction(e -> showContent(new NotificationScreen(currentUser)));
-
-        Button about = new Button("📄 About");
-        about.setMaxWidth(Double.MAX_VALUE);
-        about.setOnAction(e -> showContent(new AboutScreen(currentUser)));
-
-        Button help = new Button("❓ Help & Feedback");
-        help.setMaxWidth(Double.MAX_VALUE);
-        help.setOnAction(e -> showContent(new HelpFeedbackScreen(currentUser)));
-
-        Button rateUs = new Button("⭐ Rate Us");
-        rateUs.setMaxWidth(Double.MAX_VALUE);
-        rateUs.setOnAction(e -> {
+        Button rateUs = createMenuButton("⭐ Rate Us", e -> {
             try {
-                java.awt.Desktop.getDesktop().browse(
-                        new java.net.URI("https://play.google.com/store")
-                );
+                java.awt.Desktop.getDesktop().browse(new java.net.URI("https://play.google.com/store"));
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
@@ -136,19 +111,18 @@ public class ProfileSettingsScreen extends Application {
         // Dark mode row
         HBox darkModeRow = new HBox(10);
         darkModeRow.setAlignment(Pos.CENTER_LEFT);
+        darkModeRow.setPadding(new Insets(10, 15, 10, 15));
 
         Label darkLabel = new Label("🌙 Dark Mode");
+        darkLabel.setTextFill(javafx.scene.paint.Color.WHITE);
         CheckBox darkToggle = new CheckBox();
         darkToggle.getStyleClass().add("switch");
 
-        boolean isDark = "dark".equalsIgnoreCase(ThemeManager.getCurrentTheme());
+        boolean isDark = ThemeManager.isDarkMode();
         darkToggle.setSelected(isDark);
 
         darkToggle.setOnAction(e -> {
             ThemeManager.toggleDarkModeAndRefresh(mainLayout.getScene());
-            darkToggle.setSelected(
-                    "dark".equalsIgnoreCase(ThemeManager.getCurrentTheme())
-            );
         });
 
         Region spacer = new Region();
@@ -169,23 +143,25 @@ public class ProfileSettingsScreen extends Application {
 
         // Admin panel
         if (currentUser != null && "admin".equalsIgnoreCase(currentUser.getRole())) {
-            Button adminPanel = new Button("⚙ Admin Panel");
-            adminPanel.setMaxWidth(Double.MAX_VALUE);
-            adminPanel.setOnAction(e -> showContent(new NovelAdminScreen(currentUser)));
-
+            Button adminPanel = createMenuButton("⚙ Admin Panel", e -> showContent(new NovelAdminScreen(currentUser)));
             menu.getChildren().addAll(new Separator(), adminPanel);
         }
 
         return menu;
     }
 
-    private void showContent(SceneAware screen) {
-        Node content = screen.getContent();
-        contentPane.getChildren().setAll(content);
+    private Button createMenuButton(String text, javafx.event.EventHandler<javafx.event.ActionEvent> handler) {
+        Button btn = new Button(text);
+        btn.setMaxWidth(Double.MAX_VALUE);
+        btn.getStyleClass().add("nav-button");
+        btn.setAlignment(Pos.CENTER_LEFT);
+        btn.setOnAction(handler);
+        return btn;
     }
 
-    public static void main(String[] args) {
-        launch(args);
+    public void showContent(SceneAware screen) {
+        Node content = screen.getContent();
+        contentArea.getChildren().setAll(content);
     }
 
     public interface SceneAware {

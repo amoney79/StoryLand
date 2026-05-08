@@ -8,7 +8,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import Models.User;
-import UI.ProfileSettingsScreen.SceneAware;
+import UI.ProfileSettingsPane.SceneAware;
 
 public class ReadingPreferencesScreen extends Application implements SceneAware {
     private final User user;
