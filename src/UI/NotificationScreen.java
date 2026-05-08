@@ -11,7 +11,7 @@ import javafx.scene.layout.*;
 
 import java.util.List;
 
-public class NotificationScreen implements ProfileSettingsScreen.SceneAware {
+public class NotificationScreen implements ProfileSettingsPane.SceneAware {
     private final User user;
     private final VBox root;
     private final VBox listBox;
